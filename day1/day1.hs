@@ -2,7 +2,7 @@
 import AOC
 
 import System.IO
-import Data.List (sort, map)
+import Data.List (sort, map, sum)
 import Text.Read (readMaybe)
 
 -- read input
@@ -14,14 +14,14 @@ main = readLines "input.txt" >>= \lines -> do
     let lasts = sort (map snd parsedPairs)
     let sortedPairs = zip firsts lasts
 
-    let dists = map (\(a, b) -> abs (a - b)) sortedPairs
-    let sum = foldl (\acc x -> acc + x) 0 dists
-    putStrLn ("Part 1: " ++ show sum)
+    let dists = map (\(a, b) -> abs (a - b)) (zip firsts lasts)
+    let sum' = sum dists
+    putStrLn ("Part 1: " ++ show sum')
 
     -- For part 2, iterate through first list and then count occurrences
     -- of each element in the second list, mult by element
     let counts = map (\x -> length (filter (== x) lasts) * x) firsts
-    let sum2 = foldl (\acc x -> acc + x) 0 counts
+    let sum2 = sum counts
     putStrLn ("Part 2: " ++ show sum2)
     return ()
 
