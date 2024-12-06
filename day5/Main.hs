@@ -1,6 +1,6 @@
 module Main where
 
-import qualified MyLib (part1, part2)
+import qualified MyLib (part12)
 
 main :: IO ()
 main = do
